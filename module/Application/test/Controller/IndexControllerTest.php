@@ -45,7 +45,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
             '2019-06-04' => count(file(__DIR__ . '/../../../../data/cache/2019-06-04.log')),
         ];
 
-        $this->assertContains('data-hits="' . htmlspecialchars(json_encode($hits)) . '"', $this->getResponse()->getContent());
+        $this->assertStringContainsString('data-hits="' . htmlspecialchars(json_encode($hits)) . '"', $this->getResponse()->getContent());
     }
 
     /**

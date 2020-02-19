@@ -1,14 +1,13 @@
 # Zend test
 
-- Fork this project with the dedicated GitHub button
-- Edit master or any branch (edit only the module/Application/src directory)
-- Then create a pull-request with this branch
-- If Travis is green (both unit tests and performance test), you win!
+- Clone/fork this project
+- Install composer dependencies
+- Edit only the **module/Application/src** directory to pass the tests (`./vendor/bin/phpunit`)
 
 To run the app locally, use [composer](https://getcomposer.org/):
 
 ```shell
-git clone https://github.com/<your-username>/ZendTest
+git clone https://github.com/OVNICap/ZendTest
 cd ZendTest
 composer install
 php seed.php
@@ -17,9 +16,8 @@ composer serve
 
 Then you will be able to see the application on http://localhost:8083
 
-Replace `<your-username>` by your GitHub username.
-
-And use git as usual to push your commits to GitHub.
+You can also use an online IDE such as GitPod:
+https://gitpod.io/#https://github.com/OVNICap/ZendTest
 
 # The exercise
 
@@ -33,8 +31,11 @@ You can run unit tests with `composer test`, one of them check values returned b
 
 # Submit
 
-- Submit your answer as a **pull request** on this repository.
+Send a ZIP archive with your **module/Application/src** directory (any modification done elsewhere will be ignored).
 
-- You can send multiple pull requests (if you hesitate between 2 methods, maybe one faster, and an other more accurate or less greedy in memory).
+You ca run:
+```
+php zip.php
+```
 
-- You can submit a pull request even if it's not finished, in this case put `[WIP]` (work in progress) in the title.
+To produce the **src.zip** automatically in the project root directory.

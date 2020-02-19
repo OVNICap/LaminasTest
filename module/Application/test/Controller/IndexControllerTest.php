@@ -53,6 +53,19 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
      */
     public function testIndexActionPerformance()
     {
+        // Evaluate machine performances indexed on non-optimized code
+        $baseTime = microtime(true);
+
+        count(file(__DIR__ . '/../../../../data/cache/2019-06-01.log'));
+        count(file(__DIR__ . '/../../../../data/cache/2019-06-02.log'));
+        count(file(__DIR__ . '/../../../../data/cache/2019-06-03.log'));
+        count(file(__DIR__ . '/../../../../data/cache/2019-06-04.log'));
+
+        $baseTime = microtime(true) - $baseTime;
+
+        // Expect the new code to be at least 60 times faster
+        $speed = 60;
+
         $consumed = 0;
         $controller = new IndexController();
 
@@ -62,7 +75,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
             $consumed += microtime(true) - $m;
         }
 
-        $this->assertGreaterThan(2000, $i, 'IndexController::indexAction should be at least ' . round(2000 / $i) . ' times faster');
+        $this->assertGreaterThan($speed / $baseTime, $i, 'IndexController::indexAction should be at least ' . round(2000 / $i) . ' times faster');
     }
 
     public function testIndexActionViewModelTemplateRenderedWithinLayout()

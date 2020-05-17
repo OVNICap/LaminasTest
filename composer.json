@@ -8,11 +8,11 @@
         "mvc",
         "zf"
     ],
-    "homepage": "http://framework.zend.com/",
+    "homepage": "https://docs.laminas.dev/",
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": "^7.1",
+        "php": "^7.2",
         "laminas/laminas-component-installer": "^1.0 || ^0.7 || ^1.0.0-dev@dev",
         "laminas/laminas-mvc": "^3.0.1",
         "laminas/laminas-development-mode": "^3.0",

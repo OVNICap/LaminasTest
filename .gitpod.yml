@@ -1,0 +1,4 @@
+tasks:
+  - init: composer update -n && php seed.php
+image:
+  file: .gitpod.Dockerfile

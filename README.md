@@ -1,4 +1,4 @@
-# Zend test
+# Laminas test
 
 - Fork this project with the dedicated GitHub button
 - Edit master or any branch (edit only the module/Application/src directory)
@@ -8,8 +8,8 @@
 To run the app locally, use [composer](https://getcomposer.org/):
 
 ```shell
-git clone https://github.com/<your-username>/ZendTest
-cd ZendTest
+git clone https://github.com/<your-username>/LaminasTest
+cd LaminasTest
 composer install
 php seed.php
 composer serve

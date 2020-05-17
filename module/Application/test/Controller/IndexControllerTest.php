@@ -8,12 +8,12 @@
 namespace ApplicationTest\Controller;
 
 use Application\Controller\IndexController;
-use Zend\Stdlib\ArrayUtils;
-use Zend\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
+use Laminas\Stdlib\ArrayUtils;
+use Laminas\Test\PHPUnit\Controller\AbstractHttpControllerTestCase;
 
 class IndexControllerTest extends AbstractHttpControllerTestCase
 {
-    public function setUp()
+    public function setUp(): void
     {
         // The module configuration should still be applicable for tests.
         // You can override configuration here with test case specific values,
@@ -45,7 +45,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
             '2019-06-04' => count(file(__DIR__ . '/../../../../data/cache/2019-06-04.log')),
         ];
 
-        $this->assertContains('data-hits="' . htmlspecialchars(json_encode($hits)) . '"', $this->getResponse()->getContent());
+        $this->assertStringContainsString('data-hits="' . htmlspecialchars(json_encode($hits)) . '"', $this->getResponse()->getContent());
     }
 
     /**

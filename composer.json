@@ -1,6 +1,6 @@
 {
-    "name": "laminas/skeleton-application",
-    "description": "Skeleton Application for Zend Framework zend-mvc applications",
+    "name": "ovnicap/laminas-test",
+    "description": "Laminas test",
     "type": "project",
     "license": "BSD-3-Clause",
     "keywords": [

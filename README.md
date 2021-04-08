@@ -21,7 +21,7 @@ https://gitpod.io/#https://github.com/OVNICap/LaminasTest
 
 # The exercise
 
-Here we use log files as a simplified storage system. By running `php seed.php` (you can check what this seeder does in the source code), 4 files are created with random data: **data/cache/2019-06-01.log**, **data/cache/2019-06-02.log**, **data/cache/2019-06-03.log** and **data/cache/2019-06-04.log**, each file represent a day, each line of file represent a hit (1 display of an advertise in someone's browser).
+Here we use log files as a simplified storage system. By running `php seed.php` (you can check what this seeder does in the source code), 4 files are created with random data: **data/cache/2021-04-01.log**, **data/cache/2021-04-02.log**, **data/cache/2021-04-03.log** and **data/cache/2021-04-04.log**, each file represent a day, each line of file represent a hit (1 display of an advertise in someone's browser).
 
 Each line always contains a date-time on 26 characters and an IP on 20 characters.
 

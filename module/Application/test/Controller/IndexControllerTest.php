@@ -29,7 +29,7 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         parent::setUp();
     }
 
-    public function testIndexActionCanBeAccessed()
+    public function testIndexActionCanBeAccessed(): void
     {
         $this->dispatch('/', 'GET');
         $this->assertResponseStatusCode(200);
@@ -39,27 +39,30 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         $this->assertMatchedRouteName('home');
 
         $hits = [
-            '2019-06-01' => count(file(__DIR__ . '/../../../../data/cache/2019-06-01.log')),
-            '2019-06-02' => count(file(__DIR__ . '/../../../../data/cache/2019-06-02.log')),
-            '2019-06-03' => count(file(__DIR__ . '/../../../../data/cache/2019-06-03.log')),
-            '2019-06-04' => count(file(__DIR__ . '/../../../../data/cache/2019-06-04.log')),
+            '2021-04-01' => count(file(__DIR__ . '/../../../../data/cache/2021-04-01.log')),
+            '2021-04-02' => count(file(__DIR__ . '/../../../../data/cache/2021-04-02.log')),
+            '2021-04-03' => count(file(__DIR__ . '/../../../../data/cache/2021-04-03.log')),
+            '2021-04-04' => count(file(__DIR__ . '/../../../../data/cache/2021-04-04.log')),
         ];
 
-        $this->assertStringContainsString('data-hits="' . htmlspecialchars(json_encode($hits)) . '"', $this->getResponse()->getContent());
+        $this->assertStringContainsString(
+            'data-hits="' . htmlspecialchars(json_encode($hits)) . '"',
+            $this->getResponse()->getContent()
+        );
     }
 
     /**
      * @group performances
      */
-    public function testIndexActionPerformance()
+    public function testIndexActionPerformance(): void
     {
         // Evaluate machine performances indexed on non-optimized code
         $baseTime = microtime(true);
 
-        count(file(__DIR__ . '/../../../../data/cache/2019-06-01.log'));
-        count(file(__DIR__ . '/../../../../data/cache/2019-06-02.log'));
-        count(file(__DIR__ . '/../../../../data/cache/2019-06-03.log'));
-        count(file(__DIR__ . '/../../../../data/cache/2019-06-04.log'));
+        count(file(__DIR__ . '/../../../../data/cache/2021-04-01.log'));
+        count(file(__DIR__ . '/../../../../data/cache/2021-04-02.log'));
+        count(file(__DIR__ . '/../../../../data/cache/2021-04-03.log'));
+        count(file(__DIR__ . '/../../../../data/cache/2021-04-04.log'));
 
         $baseTime = microtime(true) - $baseTime;
 
@@ -75,16 +78,40 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
             $consumed += microtime(true) - $m;
         }
 
-        $this->assertGreaterThan($speed / $baseTime, $i, 'IndexController::indexAction should be at least ' . round(2000 / $i) . ' times faster');
+        $this->assertGreaterThan(
+            $speed / $baseTime,
+            $i,
+            'IndexController::indexAction should be at least ' . round(2000 / $i) . ' times faster'
+        );
     }
 
-    public function testIndexActionViewModelTemplateRenderedWithinLayout()
+    public function testIndexActionCanBeParametrized(): void
+    {
+        $this->dispatch('/?start=2021-04-02&end=2021-04-03', 'GET');
+        $this->assertResponseStatusCode(200);
+        $this->assertModuleName('application');
+        $this->assertControllerName(IndexController::class); // as specified in router's controller name alias
+        $this->assertControllerClass('IndexController');
+        $this->assertMatchedRouteName('home');
+
+        $hits = [
+            '2021-04-02' => count(file(__DIR__ . '/../../../../data/cache/2021-04-02.log')),
+            '2021-04-03' => count(file(__DIR__ . '/../../../../data/cache/2021-04-03.log')),
+        ];
+
+        $this->assertStringContainsString(
+            'data-hits="' . htmlspecialchars(json_encode($hits)) . '"',
+            $this->getResponse()->getContent()
+        );
+    }
+
+    public function testIndexActionViewModelTemplateRenderedWithinLayout(): void
     {
         $this->dispatch('/', 'GET');
         $this->assertQuery('.container .jumbotron');
     }
 
-    public function testInvalidRouteDoesNotCrash()
+    public function testInvalidRouteDoesNotCrash(): void
     {
         $this->dispatch('/invalid/route', 'GET');
         $this->assertResponseStatusCode(404);

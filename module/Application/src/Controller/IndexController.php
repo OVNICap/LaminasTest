@@ -12,13 +12,13 @@ use Laminas\View\Model\ViewModel;
 
 class IndexController extends AbstractActionController
 {
-    public function indexAction()
+    public function indexAction(): ViewModel
     {
         $hits = [
-            '2019-06-01' => 6,
-            '2019-06-02' => 8,
-            '2019-06-03' => 7,
-            '2019-06-04' => 10,
+            '2021-04-01' => 6,
+            '2021-04-02' => 8,
+            '2021-04-03' => 7,
+            '2021-04-04' => 10,
         ];
 
         return new ViewModel([

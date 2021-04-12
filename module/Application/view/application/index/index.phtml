@@ -1,4 +1,9 @@
 <div class="jumbotron">
+    <form action="" method="GET">
+        <input type="date" name="start" placeholder="Start" value="<?= htmlspecialchars($start) ?>">
+        <input type="date" name="end" placeholder="End" value="<?= htmlspecialchars($end) ?>">
+        <input type="submit" value="Filter">
+    </form>
 
     <?php
     $this->headScript()->appendFile('https://cdn.jsdelivr.net/npm/chart.js@2.8.0/dist/Chart.min.js');

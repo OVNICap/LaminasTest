@@ -21,8 +21,12 @@ class IndexController extends AbstractActionController
             '2021-04-04' => 10,
         ];
 
+        $keys = array_keys($hits);
+
         return new ViewModel([
             'hits' => $hits,
+            'start' => $start ?? $keys[0],
+            'end' => $end ?? end($keys),
         ]);
     }
 }

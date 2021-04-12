@@ -36,7 +36,7 @@ You can run unit tests with `composer test`.
 
 Send a ZIP archive with your **module/Application/src** directory (any modification done elsewhere will be ignored).
 
-You ca run:
+You can run:
 ```
 php zip.php
 ```

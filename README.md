@@ -27,7 +27,10 @@ Each line always contains a date-time on 26 characters and an IP on 20 character
 
 Currently, the IndexController::indexAction method return fake data. Modify it to return the actual number of lines for each file. (The display of those values as line chart is already working as you can see by running the app with `composer serve`).
 
-You can run unit tests with `composer test`, one of them check values returned by `indexAction` are the ones expected (your main goal). An other one check that `indexAction` is fast enough to be called at least 2000 times per second (your bonus goal).
+You can run unit tests with `composer test`.
+- First one checks values returned by `indexAction` are the ones expected (your main goal).
+- Second one checks `indexAction` can filter the output by dates `start` and `end` (included) given as params from URL query.
+- The third one checks that `indexAction` is fast enough to be called at least 2000 times per second (your bonus goal).
 
 # Submit
 

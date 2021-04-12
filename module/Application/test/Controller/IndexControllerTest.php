@@ -51,6 +51,26 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
         );
     }
 
+    public function testIndexActionCanBeParametrized(): void
+    {
+        $this->dispatch('/?start=2021-04-02&end=2021-04-03', 'GET');
+        $this->assertResponseStatusCode(200);
+        $this->assertModuleName('application');
+        $this->assertControllerName(IndexController::class); // as specified in router's controller name alias
+        $this->assertControllerClass('IndexController');
+        $this->assertMatchedRouteName('home');
+
+        $hits = [
+            '2021-04-02' => count(file(__DIR__ . '/../../../../data/cache/2021-04-02.log')),
+            '2021-04-03' => count(file(__DIR__ . '/../../../../data/cache/2021-04-03.log')),
+        ];
+
+        $this->assertStringContainsString(
+            'data-hits="' . htmlspecialchars(json_encode($hits)) . '"',
+            $this->getResponse()->getContent()
+        );
+    }
+
     /**
      * @group performances
      */
@@ -82,26 +102,6 @@ class IndexControllerTest extends AbstractHttpControllerTestCase
             $speed / $baseTime,
             $i,
             'IndexController::indexAction should be at least ' . round(2000 / $i) . ' times faster'
-        );
-    }
-
-    public function testIndexActionCanBeParametrized(): void
-    {
-        $this->dispatch('/?start=2021-04-02&end=2021-04-03', 'GET');
-        $this->assertResponseStatusCode(200);
-        $this->assertModuleName('application');
-        $this->assertControllerName(IndexController::class); // as specified in router's controller name alias
-        $this->assertControllerClass('IndexController');
-        $this->assertMatchedRouteName('home');
-
-        $hits = [
-            '2021-04-02' => count(file(__DIR__ . '/../../../../data/cache/2021-04-02.log')),
-            '2021-04-03' => count(file(__DIR__ . '/../../../../data/cache/2021-04-03.log')),
-        ];
-
-        $this->assertStringContainsString(
-            'data-hits="' . htmlspecialchars(json_encode($hits)) . '"',
-            $this->getResponse()->getContent()
         );
     }
 
